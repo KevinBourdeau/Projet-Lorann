@@ -1,5 +1,7 @@
 package view;
 
+import java.util.Observable;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -10,10 +12,11 @@ import javax.swing.JOptionPane;
  */
 public class ViewFacade implements IView {
 
-    /**
+	/**
      * Instantiates a new view facade.
      */
-    public ViewFacade() {
+    public ViewFacade() 
+    {
         super();
     }
 
@@ -21,9 +24,43 @@ public class ViewFacade implements IView {
      * (non-Javadoc)
      * @see view.IView#displayMessage(java.lang.String)
      */
-    @Override
-    public final void displayMessage(final String message) {
+    public final void displayMessage(final String message) 
+    {
         JOptionPane.showMessageDialog(null, message);
     }
+
+    /**
+     * 
+     */
+	public int printMessage() 
+	{
+		return 0;
+	}
+
+	/**
+	 * 
+	 */
+	public void update(Observable arg0, Object arg1) 
+	{
+		
+	}
+
+	/**
+	 * 
+	 */
+	public void setElements(char[][] elements) 
+	{
+		
+	}
+
+	/**
+	 * 
+	 */
+	public void newLevel() 
+	{
+		
+	}
+
+
 
 }
