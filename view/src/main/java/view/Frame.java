@@ -44,7 +44,7 @@ public class Frame extends JFrame implements KeyListener {
 		this.setContentPane(pan);
 		this.setVisible(true);
 		this.addKeyListener(this);
-
+		
 	}
 
 	/**
