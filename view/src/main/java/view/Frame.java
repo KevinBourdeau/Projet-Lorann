@@ -5,7 +5,15 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.IOException;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,8 +22,8 @@ import javax.swing.JPanel;
 public class Frame extends JFrame implements KeyListener {
 
 	/** The initial frame size. */
-	private static final int defaultFrameSizeWidth = 645; // largeur//
-	private static final int defaultFrameSizeHeight = 384; // longueur//
+	private static final int Width = 645; // largeur//
+	private static final int Height = 384; // longueur//
 	
 	private int key;
 	
@@ -34,25 +42,48 @@ public class Frame extends JFrame implements KeyListener {
 
 	}
 
+	
+	/** Repaint the panel */
+	
+	/*private Thread paintWindow = new Thread() {
+		@Override
+		public void run() {
+			while (true)
+				pan.repaint();
+		}
+	};
+	*/
+	
 	public void myFrame() {
 
+		/*Style of the frame*/
+		
 		this.setTitle("coucou");
-		this.setSize(defaultFrameSizeWidth, defaultFrameSizeHeight);
+		this.setSize(Width, Height);
+		
+		/*Position*/
+		this.setLocationRelativeTo(null);
+		
+		/*Behavior*/
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocationRelativeTo(null);
+		
 		this.setContentPane(pan);
+		
+		/*Make the frame visible*/
 		this.setVisible(true);
+		
+		/*Add keyListener*/
 		this.addKeyListener(this);
+		
+		/*Focus on the keyboard*/
+		requestFocusInWindow();
+		
+		/* this.paintWindow.start(); */
+		
 		
 	}
 
-	/**
-	 * This function register the score to draw
-	 * 
-	 * @param score
-	 *            - the score to draw
-	 */
 
 
 
@@ -83,38 +114,40 @@ public class Frame extends JFrame implements KeyListener {
 		this.key = key;
 	}
 
-	/*
-	 * @Override public void keyTyped(KeyEvent e) { // TODO Auto-generated
-	 * method stub
-	 * 
-	 * }
-	 * 
-	 * @Override public void keyPressed(KeyEvent e) { int keyLetter =
-	 * e.getKeyCode();
-	 * 
-	 * switch (keyLetter) { case KeyEvent.VK_UP: System.out.println("UP");
-	 * break; case KeyEvent.VK_LEFT: System.out.println("LEFT");
-	 * 
-	 * break; case KeyEvent.VK_RIGHT: System.out.println("RIGHT"); break; case
-	 * KeyEvent.VK_DOWN: System.out.println("DOWN"); break; case
-	 * KeyEvent.VK_SPACE: System.out.println("SHOOT"); break; }
-	 * controller.movePlayer(e);
-	 * 
-	 * }
-	 */
+	public int getWidth() {
+		return Width;
+	}
 
-	/*
-	 * @Override public void keyReleased(KeyEvent e) { /*int keycode =
-	 * e.getKeyCode();
-	 * 
-	 * if(keycode == KeyEvent.VK_UP){ pressedUp = false; } if(keycode ==
-	 * KeyEvent.VK_LEFT){ pressedLeft = false; } if(keycode ==
-	 * KeyEvent.VK_RIGHT){ pressedRight = false; } if(keycode ==
-	 * KeyEvent.VK_DOWN){ pressedDown = false; } if (keycode ==
-	 * KeyEvent.VK_SPACE){ pressedFire = false; }
-	 * 
-	 * }
-	 */
+	public int getHeight() {
+		return Height;
+	}
+	
+	
+	/* THE SOUND */
+	
+	/*public static void playSound(String soundName, double volume) 
+	{    
+		AudioInputStream audioInputStream;
+		try {
+			audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
+			Clip clip = AudioSystem.getClip();
+			clip.open(audioInputStream);
+			FloatControl gainControl =  (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+			float dB = (float) (Math.log(volume) / Math.log(10.0) * 20.0);
+			gainControl.setValue(dB); // Reduce volume by 10 decibels.
+			clip.start();
+		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}*/
+	
+	
+	
+	
+	
+	
 
 }
 
